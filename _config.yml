@@ -1,0 +1,18 @@
+auto: true
+
+markdown: rdiscount
+pygments: true
+paginate: 20
+permalink: date
+
+title: shuaqiu
+url: http://shuaqiu.github.com
+feed: /shuaqiu.xml
+author:
+    name: shuaqiu
+    weibo: http://weibo.com/beautifulpursuer
+description: "shuaqiu"
+author_info: <a href="http://shuaqiu.github.com/about">shuaqiu</a>
+
+copyright:
+    - Design by <a href="http://shuaqiu.github.com/about" title="shuaqiu" target="_blank">shuaqiu</a> &copy; Copyright 2012
