@@ -4,8 +4,7 @@ title: JQuery + RequireJS
 tags: jquery web
 ---
 
-##{{page.title}}
-####{{page.date | date_to_string}}
+{% include title.md %}
 
 最近弄的一個項目, 由於項目主體框架使用的是Primeface, 因此前端自動引入了jQuery. 
 
