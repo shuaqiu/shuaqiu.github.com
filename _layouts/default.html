@@ -10,17 +10,11 @@
 <link href="css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
 <style type="text/css">
 .navbar-inverse .navbar-inner {
-    background-color: #6A7B4D;
-    background-image: -moz-linear-gradient(top, #748161, #6A7B4D);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#748161),
-        to(#6A7B4D) );
-    background-image: -webkit-linear-gradient(top, #748161, #6A7B4D);
-    background-image: -o-linear-gradient(top, #748161, #6A7B4D);
-    background-image: linear-gradient(to bottom, #748161, #6A7B4D);
+    background-color: transparent;
+    background-image: url(img/global_nav_bg.png);
     background-repeat: repeat-x;
-    border-color: #748161;
-    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff748161',
-        endColorstr='#ff6A7B4D', GradientType=0 )
+    background-position: 0 0;
+    background-attachment: scroll;
 }
 
 .navbar-inverse .brand,.navbar-inverse .nav>li>a {
@@ -29,6 +23,11 @@
 
 .container {
     background-color: transparent;
+    background-image: url(img/repeat_bg_y.png);
+    background-repeat: repeat-y;
+    background-position: right 0;
+    background-attachment: scroll;
+    margin: 60px;
 }
 
 .weiboshow {

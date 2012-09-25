@@ -9,9 +9,8 @@ title: shuaqiu
 
 {% for post in site.posts limit:10 %}
 
-##[{{ post.title }}]({{ site.baseurl }}{{ post.url }})
-#####{{ post.date | date_to_string }} 
-
 {{ post.content | truncatewords:200 }}
+
+
 
 {% endfor %}
