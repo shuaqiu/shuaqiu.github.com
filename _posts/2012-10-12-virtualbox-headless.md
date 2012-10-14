@@ -10,17 +10,19 @@ tags: Virtualbox
 
 不過之前一直都是使用GUI, 突然換成命令行, 還真的相當不習慣呢...下面是嘗試創建一個XP 的虛擬機...
 
-- 首先當然是先創建一個虛擬機了, 使用命令:
+- 創建虛擬機
 
-    VBoxManage createvm --name xp --ostype WindowsXP --register --basefolder VirtualBox\ VMs/xp
-
-這裡我是弄複雜了, 其實可以不需要再指定basefolder 了的, 命令會直接在默認的目錄下創建虛擬機的文件(會用虛擬機名創建文件夾先)...命令執行完成之後, 可以在對應目錄下找到名字為xp.vbox 的文件...
-
-如果不確定虛擬機是否創建成功了, 可以使用命令:
-
-    VBoxManage list vms
-
-查看當前的虛擬機列表.
+>首先當然是先創建一個虛擬機了, 使用命令:
+>
+>    VBoxManage createvm --name xp --ostype WindowsXP --register --basefolder VirtualBox\ VMs/xp
+>
+>這裡我是弄複雜了, 其實可以不需要再指定basefolder 了的, 命令會直接在默認的目錄下創建虛擬機的文件(會用虛擬機名創建文件夾先)...命令執行完成之後, 可以在對應目錄下找到名字為xp.vbox 的文件...
+>
+>如果不確定虛擬機是否創建成功了, 可以使用命令:
+>
+>    VBoxManage list vms
+>
+>查看當前的虛擬機列表.
 
 - 修改虛擬機的網卡, 因為我都是使用Bridge Adapter 方式進行鏈接的, 因此使用命令:
 
