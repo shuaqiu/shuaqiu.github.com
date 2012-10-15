@@ -14,9 +14,11 @@ tags: jquery web
 
 首先從[requirejs.org](http://requirejs.org/) 下載了最新的2.0.6 版, 也查看了一下RequireJS 裏面和jQuery 集成的sample, 只是發現這個例子裏面的jQuery 是經過一些處理的, 不過在[require-jquery](https://github.com/jrburke/require-jquery) 查看了一下對應的源代碼發現, 其實原理並不難理解, 最關鍵是最後面的兩行:
 
+    {% highlight js linenos %}
     if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
         define( "jquery", [], function () { return jQuery; } );
     }
+    {% endhighlight %}
 
 在這裡定義了一個jquery 的模塊, 使得可以再外面進行引用, 但是由於我現在項目的jQuery 是Primeface 直接給引入的, 我已經不需要再引入一個[require-jquery](https://github.com/jrburke/require-jquery) 了, 該怎麼辦呢?
 
@@ -25,18 +27,24 @@ tags: jquery web
 - 首先新建一個jquery.js 的文件
 - 文件的內容很簡單, 和上面的也比較類似:
 
+        {% highlight js linenos %}
         define( [], function() {
             return window.jQuery;
         });
+        {% endhighlight %}
 
 - 在需要使用到jQuery 的js 文件a.js, 直接require 這個jquery:
 
+        {% highlight js linenos %}
         require( ["./pathto/jquery", "otherjs"], function($, otherjs) {
             // implement code here
         });
+        {% endhighlight %}
 
 測試比較簡單, 將上面這個a.js 通過[requirejs.org](http://requirejs.org/) 引入頁面最後面, 參考[requirejs.org](http://requirejs.org/) 上的做法, 如下:
 
+    {% highlight html linenos %}
     <script src="pathto/require.js" type="text/javascript" data-main="pathto/a.js"></script>
+    {% endhighlight %}
 
 完畢!
