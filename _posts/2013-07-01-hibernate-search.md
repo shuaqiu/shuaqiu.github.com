@@ -55,7 +55,7 @@ tags: Hibernate Search, Lucene
     }
     {% endhighlight %}
 
-    > 這裏, 主要是@Field 的Annotation, 其中的name 屬性即是生成的Lucene 字段名稱
+    這裏, 主要是@Field 的Annotation, 其中的name 屬性即是生成的Lucene 字段名稱
 
 - 接下來自然是Hibernate 的配置文件了, 和正常的配置文件差不多, 除了要添加Lucene 的索引保存路徑, 如果要在新增/ 修改/ 刪除實體時自動更新索引, 還需要添加listener.
 
