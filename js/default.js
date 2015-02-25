@@ -1,9 +1,9 @@
 'use strict';
 
 (function (window, $) {
-    var $win = $(window);
+    var $body = $(document.body);
     $('.js-to-top').on('click', function toTop(event) {
-        $win.animate({
+        $body.animate({
             scrollTop: 0
         }, 1000);
         event.preventDefault();
