@@ -2,7 +2,7 @@ auto: true
 
 markdown: rdiscount
 pygments: true
-paginate: 20
+paginate: 10
 permalink: date
 
 title: shuaqiu
