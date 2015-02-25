@@ -34,7 +34,21 @@
     <div class="row">
       <div class="span9">
         <div class="content">{{ content }}</div>
-        {% if page.url != '/index.html' %}
+        {% if page.url == '/index.html' %}
+          <div class="pagination">
+            {% if paginator.previous_page %}
+              <a href="{{ paginator.previous_page_path }}" class="previous">上一页</a>
+            {% else %}
+              <span class="previous">上一页</span>
+            {% endif %}
+            <span class="page_number ">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+            {% if paginator.next_page %}
+              <a href="{{ paginator.next_page_path }}" class="next">下一页</a>
+            {% else %}
+              <span class="next ">下一页</span>
+            {% endif %}
+          </div>
+        {% else %}
           <div>
             <!-- JiaThis Button BEGIN -->
             <div class="jiathis_style_32x32">
