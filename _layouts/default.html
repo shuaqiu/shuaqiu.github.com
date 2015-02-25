@@ -35,6 +35,10 @@
       <div class="span9">
         <div class="content">{{ content }}</div>
         {% if page.url == '/index.html' %}
+          {% for post in paginator.posts %}
+            {{ post.content | 1000 }}
+            <hr/>
+          {% endfor %}
           <div class="pagination">
             {% if paginator.previous_page %}
               <a href="{{ paginator.previous_page_path }}" class="previous">上一页</a>
