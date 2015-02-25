@@ -14,7 +14,7 @@ tags: AngularJS, Performance
 
 1. 尝试使用Developer Tool 里面的Profile, 结果不会用. 看不出对象是不是释放掉了.
 
-    ![对象太多, 完全找不到了](Angular Performance/profile-cannot-find-object.png)
+    ![对象太多, 完全找不到了](/img/Angular Performance/profile-cannot-find-object.png)
 
     图: 对象太多, 完全找不到了
 
@@ -33,7 +33,7 @@ tags: AngularJS, Performance
 
     这下效果明显了. 然后就发现, 任务详情的窗口关闭之后, task 对象还一直存在.
 
-    ![Task 对象不能被释放](Angular Performance/profile-task-cannot-release.png)
+    ![Task 对象不能被释放](/img/Angular Performance/profile-task-cannot-release.png)
 
     图: Task 对象不能被释放
 
@@ -62,7 +62,7 @@ tags: AngularJS, Performance
     };
     ```
 
-    ![多次弹出Modal 的Profile](Angular Performance/profile-modal.png)
+    ![多次弹出Modal 的Profile](/img/Angular Performance/profile-modal.png)
 
     图: 多次弹出Modal 的Profile
 
@@ -81,8 +81,8 @@ tags: AngularJS, Performance
     该对象被 GC 之后所能回收到内存的总和.
 
 	<table style="border: none;"><tr>
-		<td>![retained size 1](Angular Performance/retained-objects-1.png)</td>
-		<td>![retained size 2](Angular Performance/retained-objects-2.png)</td>
+		<td>![retained size 1](/img/Angular Performance/retained-objects-1.png)</td>
+		<td>![retained size 2](/img/Angular Performance/retained-objects-2.png)</td>
 	</tr></table>
 
     从 obj1 入手，图中蓝色节点代表仅仅只有通过 obj1 才能直接或间接访问的对象。因为可以通过 GC Roots 访问，所以左图的 obj3 不是蓝色节点；而在右图却是蓝色，因为它已经被包含在 retained 集合内。
@@ -145,7 +145,7 @@ tags: AngularJS, Performance
 
     把这样的都修改完, 然后进行测试, 内存基本上比较平稳了. Profile 也不会出现大量无法释放的Task 对象. 观察Chrome 的Task Manager 里面的JavaScript Memory 变化, 内存能够得到释放(上涨了一段之后, 会进行回收, 释放后的内存使用量和开始时差不多).
 
-    ![Task Manager 的JavaScript Memory](Angular Performance/taskmanager-jsmemory.png)
+    ![Task Manager 的JavaScript Memory](/img/Angular Performance/taskmanager-jsmemory.png)
 
     图: Task Manager 的JavaScript Memory
 
@@ -157,7 +157,7 @@ tags: AngularJS, Performance
 
 这个感觉跟内存没有关系了, 于是尝试使用Developer Tool 里面的Timeline 来看这一段时间发生了什么事.
 
-![TaskName 花了很多时间执行](Angular Performance/timeline-tasklist.png)
+![TaskName 花了很多时间执行](/img/Angular Performance/timeline-tasklist.png)
 
 图: TaskName 花了很多时间执行
 
@@ -188,11 +188,11 @@ $timeout(function() {
 
 1. 在Developer Tool 的console 面板里面, 可以用$0, $1, ..., $4, 来引用在element 面板最近点击到的元素.
 
-    ![在element 上选取元素](Angular Performance/$0-element.png)
+    ![在element 上选取元素](/img/Angular Performance/$0-element.png)
 
     图: 在element 上选取元素
 
-    ![在console 上使用$0 获取dom](Angular Performance/$0-console.png)
+    ![在console 上使用$0 获取dom](/img/Angular Performance/$0-console.png)
 
     图: 在console 上使用$0 获取dom
 
@@ -207,7 +207,7 @@ $timeout(function() {
     console.timeEnd("Array initialize");
     ```
 
-    ![console.time 输出](Angular Performance/console-time.jpg)
+    ![console.time 输出](/img/Angular Performance/console-time.jpg)
 
     图: console.time 输出
 
