@@ -1,17 +1,21 @@
-auto: true
+# auto: true
 
 # markdown: kramdown 
-markdown: rdiscount 
-# markdown: redcarpet 
-highlighter: rouge
-# highlighter: pygemts
-paginate: 10
+# markdown: rdiscount 
+markdown: redcarpet 
+# highlighter: rouge
+highlighter: pygments
+paginate: 5
 paginate_path: "/page:num/"
 permalink: date
 
 kramdown:
-    enable_coderay: true
     input: GFM
+    use_coderay: true
+    enable_coderay: true
+
+redcarpet:
+    extensions: [ "tables", "autolink", "strikethrough", "space_after_headers", "with_toc_data", "fenced_code_blocks" ]
 
 title: shuaqiu
 url: http://shuaqiu.github.io
