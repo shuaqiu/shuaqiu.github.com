@@ -1,10 +1,16 @@
-auto: true
 
-markdown: rdiscount
-pygments: true
+# markdown: kramdown 
+markdown: rdiscount 
+# markdown: redcarpet 
+highlighter: rouge
+# highlighter: pygemts
 paginate: 10
 paginate_path: "/page:num/"
 permalink: date
+
+kramdown:
+    enable_coderay: true
+    input: GFM
 
 title: shuaqiu
 url: http://shuaqiu.github.io
