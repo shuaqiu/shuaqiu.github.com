@@ -20,7 +20,7 @@ tags: AngularJS, Performance
 
 1. 使用了个笨办法, 在任务的对象放一个很大的数组.
 
-    ```
+    ```js
     function alloc() {
         var largeObject = [];
         for (var i = 0; i < 1000000; i++) {
@@ -43,7 +43,7 @@ tags: AngularJS, Performance
 
     于是写了个简单的页面来进行测试:
 
-    ```
+    ```js
     $scope.modal = function modal() {
         $modal.open({
             templateUrl: 'angular/views/modal.html',
@@ -81,8 +81,8 @@ tags: AngularJS, Performance
     该对象被 GC 之后所能回收到内存的总和.
 
 	<table style="border: none;"><tr>
-		<td>![retained size 1](/img/Angular Performance/retained-objects-1.png)</td>
-		<td>![retained size 2](/img/Angular Performance/retained-objects-2.png)</td>
+		<td><img src="/img/Angular Performance/retained-objects-1.png" /></td>
+		<td><img src="/img/Angular Performance/retained-objects-2.png" /></td>
 	</tr></table>
 
     从 obj1 入手，图中蓝色节点代表仅仅只有通过 obj1 才能直接或间接访问的对象。因为可以通过 GC Roots 访问，所以左图的 obj3 不是蓝色节点；而在右图却是蓝色，因为它已经被包含在 retained 集合内。
@@ -95,7 +95,7 @@ tags: AngularJS, Performance
 
     经过好长好长好长...一段时间的折腾, 终于发现问题点:
 
-    ```
+    ```js
     // 好多个directive 都有这样的代码
     element.parents().click(function(){
         $scope.closePanel();
@@ -115,7 +115,7 @@ tags: AngularJS, Performance
 
     In other words, the function defined in the closure **'remembers'** the environment in which it was created.
 
-    ```
+    ```js
     function startAt(x) {
         function incrementBy(y) {
             return x + y;
@@ -129,7 +129,7 @@ tags: AngularJS, Performance
 
     既然发现问题, 于是进行调整:
 
-    ```
+    ```js
     function closeHandler = function(){
         $scope.closePanel();
         $scope.$apply();
@@ -149,9 +149,7 @@ tags: AngularJS, Performance
 
     图: Task Manager 的JavaScript Memory
 
----
-
-####另一个性能问题
+#### 另一个性能问题
 
 任务列表里面, 点击任务名称, 要等很长时间(1 分多钟)才会弹出任务详情.
 
@@ -163,7 +161,7 @@ tags: AngularJS, Performance
 
 看下代码:
 
-```
+```js
 $timeout(function() {
     $scope.isMultiRow = elem.height() > LINE_HEIGHT;
     Tasks.length = 0;
@@ -176,13 +174,11 @@ $timeout(function() {
 
 如果`$timeout` 里面的代码不需要触发消息循环, 那么应该给`$timeout` 调用加上第三个参数, 并传递`false` 过去.
 
-```
+```js
 $timeout(function() {
     // code
 }, 0, false);
 ```
-
----
 
 #### 几个小技巧
 
@@ -198,7 +194,7 @@ $timeout(function() {
 
 1. console.time
 
-    ```
+    ```js
     console.time("Array initialize");
     var array= new Array(1000000);
     for (var i = array.length - 1; i >= 0; i--) {
@@ -210,8 +206,6 @@ $timeout(function() {
     ![console.time 输出](/img/Angular Performance/console-time.jpg)
 
     图: console.time 输出
-
----
 
 ##### 参考
 

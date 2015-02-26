@@ -55,7 +55,7 @@ Enable a group of DOM elements to be sortable. Click on and drag an element to a
 
     如果需要将当前列表的元素, 拖动到其他列表去, 则需要用这个选项来指定"其他列表" 的selector. 取值为:selector. 例如上面的:
 
-    ```
+    ```js
     connectWith: '.list-group'
     ```
 
@@ -87,9 +87,11 @@ Enable a group of DOM elements to be sortable. Click on and drag an element to a
 
     定义拖动的元素在松开后, 到达新位置的时长. 可能的取值是:
 
-    + false (默认值), 则没有时长, 直接到达新位置.
-    + true, 则使用默认的时长.
-    + 数值, 使用指定的时长, 单位是毫秒(milliseconds)
+        + false (默认值), 则没有时长, 直接到达新位置.
+
+        + true, 则使用默认的时长.
+
+        + 数值, 使用指定的时长, 单位是毫秒(milliseconds)
 
     例如:
     
@@ -226,18 +228,20 @@ $('.list-group:eq(0)').on('sortstart', function(event, ui) {
 
     这个或者可以说是最重要的一个方法了. 这个方法类似jQuery 的css 等方法, 有下面这样几种调用方式:
     
-    + option(optionName): 获取指定option 的值.
-    + option(optionName, optionValue): 设置option 的值.
-    + option(options): 和上面的类似, 都是设置option 值, 
-
-        但是这个方式可以支持多个option 的设置, 例如:
-
-        ```js
-        $('.list-group').sortable('option', {
-            disable : true // 禁用排序
-        });
-
-    + option(): 获取所有的option, 返回一个很长串的对象. 实际意义并不是很大, 调试的时候会有些用.
+    > + option(optionName): 获取指定option 的值.
+    > 
+    > + option(optionName, optionValue): 设置option 的值.
+    > 
+    > + option(options): 和上面的类似, 都是设置option 值, 
+    > 
+    >     但是这个方式可以支持多个option 的设置, 例如:
+    > 
+    >     ```js
+    >     $('.list-group').sortable('option', {
+    >         disable : true // 禁用排序
+    >     });
+    > 
+    > + option(): 获取所有的option, 返回一个很长串的对象. 实际意义并不是很大, 调试的时候会有些用.
 
 1. start 事件
 
@@ -283,52 +287,50 @@ $('.list-group:eq(0)').on('sortstart', function(event, ui) {
 
 OK, 差不多就这样了. 末了, 再补充一点点
 
----
-
 #### 附
 
 1. 其他一些选项
 
-    + disabled: 取值为boolean, 如果设置为true, 则直接禁用整个列表的排序功能.
-
-    + helper: 在拖动时, 跟随鼠标移动的元素, 取值为: original (默认值, 直接拖动元素), clone(复制一个新的元素), function(){...}(使用函数返回的元素).
-
-    + axis: 可以指定为x 或y, 来限定只能进行一个方向上的拖动
-
-    + zIndex: 设置拖动元素的z-index, 取值为数值, 默认是1000
+    > + disabled: 取值为boolean, 如果设置为true, 则直接禁用整个列表的排序功能.
+    > 
+    > + helper: 在拖动时, 跟随鼠标移动的元素, 取值为: original (默认值, 直接拖动元素), clone(复制一个新的元素), function(){...}(使用函数返回的元素).
+    > 
+    > + axis: 可以指定为x 或y, 来限定只能进行一个方向上的拖动
+    > 
+    > + zIndex: 设置拖动元素的z-index, 取值为数值, 默认是1000
 
 1. 从选项可以看出的一点东西
 
-    从上面的选项, 可以看出, Sortable 在进行拖动排序时:
-
-    + 根据items / cancel / handle 属性的设置, 给列表的元素绑定拖动事件.
-    
-    + 在进行拖动时, 根据helper 设置处理跟随鼠标拖动的元素. 并根据当前鼠标的位置, 以及connectWith 设置, 计算可以进行放置的位置, 并在该位置创建placeholder, 如果有设置placeholder 样式, 则会将该样式应用上去.
-
-    + 松开鼠标时, 将元素放到当前placeholder 的位置.
+    > 从上面的选项, 可以看出, Sortable 在进行拖动排序时:
+    > 
+    > + 根据items / cancel / handle 属性的设置, 给列表的元素绑定拖动事件.
+    > 
+    > + 在进行拖动时, 根据helper 设置处理跟随鼠标拖动的元素. 并根据当前鼠标的位置, 以及connectWith 设置, 计算可以进行放置的位置, 并在该位置创建placeholder, 如果有设置placeholder 样式, 则会将该样式应用上去.
+    > 
+    > + 松开鼠标时, 将元素放到当前placeholder 的位置.
 
 1. 关于事件
 
-    Sortable 有不少事件, 前面也介绍了其中的start 和stop. 不过Sortable 还有不少其他事件.
-
-    通过测试, 如果是在列表内容拖动, 则是这样一个过程:
-
-    + start --> 拖动开始时触发.
-
-    + activate --> 在start 事件之后, 拖动的元素所有可以放置的列表都会触发这个事件. 这里所有可以放置的列表: 首先是元素本身所在的列表, 另外, 如果指定了connectWith 参数, 则还包括connectWith 参数指定的所有列表.
-
-    + sort --> 在拖动时会不停触发, 意义不大.
-
-    + change --> 当元素的位置发生变化时触发, 会有多次产生(只要放置的位置变了就触发, 也就是说会触发多次, 感觉实际意义不大).
-
-    + beforeStop --> 停止之前, 在helper /placeholder 还存在时触发(我的理解是在刚刚松开鼠标时触发的).
-
-    + update --> 在停止排序, 并且元素位置已经改变之后触发.
-
-    + deactivate --> 和activate 类似, 所有可以放置的列表都会触发这个事件.
-
-    + stop --> 排序已经停止时触发, 可以通过cancel 方法取消当前的排序操作.
-
-        如果在在多个列表之间拖动, 则还会再触发over (进入到另外一个列表), out(从一个列表离开), remove /receive(元素从一个列表放到另一个列表时, 这两个列表分别触发的事件) 这些事件.
+    > Sortable 有不少事件, 前面也介绍了其中的start 和stop. 不过Sortable 还有不少其他事件.
+    > 
+    > 通过测试, 如果是在列表内容拖动, 则是这样一个过程:
+    > 
+    > + start --> 拖动开始时触发.
+    > 
+    > + activate --> 在start 事件之后, 拖动的元素所有可以放置的列表都会触发这个事件. 这里所有可以放置的列表: 首先是元素本身所在的列表, 另外, 如果指定了connectWith 参数, 则还包括connectWith 参数指定的所有列表.
+    > 
+    > + sort --> 在拖动时会不停触发, 意义不大.
+    > 
+    > + change --> 当元素的位置发生变化时触发, 会有多次产生(只要放置的位置变了就触发, 也就是说会触发多次, 感觉实际意义不大).
+    > 
+    > + beforeStop --> 停止之前, 在helper /placeholder 还存在时触发(我的理解是在刚刚松开鼠标时触发的).
+    > 
+    > + update --> 在停止排序, 并且元素位置已经改变之后触发.
+    > 
+    > + deactivate --> 和activate 类似, 所有可以放置的列表都会触发这个事件.
+    > 
+    > + stop --> 排序已经停止时触发, 可以通过cancel 方法取消当前的排序操作.
+    > 
+    > 如果在在多个列表之间拖动, 则还会再触发over (进入到另外一个列表), out(从一个列表离开), remove /receive(元素从一个列表放到另一个列表时, 这两个列表分别触发的事件) 这些事件.
 
 再其他的, 自己看API 了.

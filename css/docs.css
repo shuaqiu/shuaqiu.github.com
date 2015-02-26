@@ -27,6 +27,11 @@
     margin-bottom: 60px;
 }
 
+.content .content {
+    max-height: 400px;
+    overflow-y: hidden;
+}
+
 .weiboshow {
     margin: 30px 0 0;
     padding: 0;
