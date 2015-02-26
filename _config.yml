@@ -1,3 +1,4 @@
+auto: true
 
 # markdown: kramdown 
 markdown: rdiscount 
